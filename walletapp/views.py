@@ -3,14 +3,21 @@ from walletapp.models import Wallet
 from .forms import AccountRegistrationForm, CardRegistrationForm, CustomerRegistrationForm, LoanRegistrationForm, NotificationRegistrationForm, ReceiptRegistrationForm, RewardRegistrationForm, ThirdPartyRegistrationForm, TransactionRegistrationForm
 from .forms import WalletRegistrationForm
 from .forms import CurrencyRegistrationForm
+from .models import Customer
 
 # Create your views here.
 def register_customer(request):
-    form = CustomerRegistrationForm()
+    if request.method == 'POST':
+        form = CustomerRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = CustomerRegistrationForm()    
     return render(request, "register_customer.html", {"form": form})
                                         
 def register_wallet(request):
-    form = WalletRegistrationForm()
+    if request.method == "POST":
+        form = WalletRegistrationForm()
     return render(request, "register_wallet.html", {"form": form})   
 
 def register_currency(request):
@@ -48,4 +55,7 @@ def register_loan(request):
 def register_reward(request):
     form = RewardRegistrationForm
     return render(request, "register_reward.html", {"form": form}) 
-                                     
+                            
+def list_customers(request):
+    customers = Customer.objects.all()   
+    return render(request, "wallet/list_customers.html", {"customers":customers})                              
