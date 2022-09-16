@@ -1,109 +1,113 @@
 from django.shortcuts import render
 from walletapp.models import Wallet
-from .forms import AccountRegistrationForm, CardRegistrationForm, CustomerRegistrationForm, LoanRegistrationForm, NotificationRegistrationForm, ReceiptRegistrationForm, RewardRegistrationForm, ThirdPartyRegistrationForm, TransactionRegistrationForm
-from .forms import WalletRegistrationForm
-from .forms import CurrencyRegistrationForm
+from . import forms
 from . import models
 
 # Create your views here.
+
+# Start of Registrations
 def register_customer(request):
     if request.method == 'POST':
-        form = CustomerRegistrationForm(request.POST)
+        form = forms.CustomerRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
     else:
-        form = CustomerRegistrationForm()    
+        form = forms.CustomerRegistrationForm()    
     return render(request, "register_customer.html", {"form": form})
                                         
 def register_wallet(request):
     if request.method == 'POST':
-        form = WalletRegistrationForm(request.POST)
+        form = forms.WalletRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
     else:
-        form = WalletRegistrationForm()    
+        form = forms.WalletRegistrationForm()    
     return render(request, "register_wallet.html", {"form": form})
 
 def register_currency(request):
     if request.method == 'POST':
-        form = CurrencyRegistrationForm(request.POST)
+        form = forms.CurrencyRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
     else:
-        form = CurrencyRegistrationForm()    
+        form = forms.CurrencyRegistrationForm()    
     return render(request, "register_currency.html", {"form": form}) 
 
 def register_account(request):
     if request.method == 'POST':
-        form = AccountRegistrationForm(request.POST)
+        form = forms.AccountRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
     else:
-        form = AccountRegistrationForm()    
+        form = forms.AccountRegistrationForm()    
     return render(request, "register_account.html", {"form": form}) 
 
 def register_transaction(request):
     if request.method == 'POST':
-        form = TransactionRegistrationForm(request.POST)
+        form = forms.TransactionRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
     else:
-        form = TransactionRegistrationForm()    
+        form = forms.TransactionRegistrationForm()    
     return render(request, "register_transaction.html", {"form": form})
 
 def register_card(request):
     if request.method == 'POST':
-        form = CardRegistrationForm(request.POST)
+        form = forms.CardRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
     else:
-        form = CardRegistrationForm()    
+        form = forms.CardRegistrationForm()    
     return render(request, "register_card.html", {"form": form}) 
 
 def register_thirdparty(request):
     if request.method == 'POST':
-        form = ThirdPartyRegistrationForm(request.POST)
+        form = forms.ThirdPartyRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
     else:
-        form = ThirdPartyRegistrationForm()    
+        form = forms.ThirdPartyRegistrationForm()    
     return render(request, "register_thirdparty.html", {"form": form}) 
 
 def register_notifications(request):
     if request.method == 'POST':
-        form = NotificationRegistrationForm(request.POST)
+        form = forms.NotificationRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
     else:
-        form = NotificationRegistrationForm()    
+        form = forms.NotificationRegistrationForm()    
     return render(request, "register_notification.html", {"form": form})
 
 def register_receipt(request):
     if request.method == 'POST':
-        form = ReceiptRegistrationForm(request.POST)
+        form = forms.ReceiptRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
     else:
-        form = ReceiptRegistrationForm()    
+        form = forms.ReceiptRegistrationForm()    
     return render(request, "register_receipt.html", {"form": form}) 
 
 def register_loan(request):
     if request.method == 'POST':
-        form = LoanRegistrationForm(request.POST)
+        form = forms.LoanRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
     else:
-        form = LoanRegistrationForm()    
+        form = forms.LoanRegistrationForm()    
     return render(request, "register_loan.html", {"form": form})
 
 def register_reward(request):
     if request.method == 'POST':
-        form = RewardRegistrationForm(request.POST)
+        form = forms.RewardRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
     else:
-        form = RewardRegistrationForm()    
+        form = forms.RewardRegistrationForm()    
     return render(request, "register_reward.html", {"form": form})
+
+# End of Registrations
+
+# Start of Lists
                             
 def list_customers(request):
     customers = models.Customer.objects.all()   
@@ -147,5 +151,6 @@ def list_thirdparties(request):
 
 def list_notifications(request):
     notifications = models.Notification.objects.all()
-    return render(request, 'notifications_list.html',
-    {'notifications': notifications})                            
+    return render(request, 'notifications_list.html',{'notifications': notifications})   
+ 
+# End of Lists                        
