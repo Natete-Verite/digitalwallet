@@ -121,9 +121,9 @@ def list_transactions(request):
     transactions = models.Transaction.objects.all()
     return render(request, "transactions_list.html",{'transactions': transactions})
 
-def list_currency(request):
-    currencys = models.Currency.objects.all()
-    return render(request, 'currencies_list.html',{'currencys': currencys})
+def list_currencies(request):
+    currencies = models.Currency.objects.all()
+    return render(request, 'currencies_list.html',{'currencies': currencies})
 
 def list_receipts(request):
     receipts = models.Receipt.objects.all()
@@ -141,7 +141,7 @@ def list_rewards(request):
     rewards = models.Reward.objects.all()
     return render(request, "rewards_list.html", {'rewards': rewards})
 
-def list_thirdparty(request):
+def list_thirdparties(request):
     thirdparties = models.ThirdParty.objects.all()
     return render(request, "thirdparties_list.html",{'thirdparties': thirdparties})
 
