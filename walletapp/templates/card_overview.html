@@ -1,0 +1,5 @@
+<h1>{{card.card_number}}</h1>
+<h2>{{card.card_type}}</h2>
+<h3>{{card.account}}</h3>
+<h4>{{card.issuer}}</h4>
+<a href="{% url 'edit_card' id=card.id %}"> Edit </a>

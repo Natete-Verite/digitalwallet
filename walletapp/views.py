@@ -159,7 +159,27 @@ def list_notifications(request):
 
 def customer_profile(request,id):
     customer = models.Customer.objects.get(id=id)
-    return render(request, 'customer_profile.html',{'customer': customer})   
+    return render(request, 'customer_profile.html',{'customer': customer})
+
+def wallet_overview(request,id):
+    wallet = models.Wallet.objects.get(id=id)
+    return render(request, 'wallet_overview.html',{'wallet': wallet})
+
+def  account_overview(request,id):
+    account = models.Account.objects.get(id=id)
+    return render(request, 'account_overview.html',{'account': account})
+
+def  card_overview(request,id):
+    card = models.Card.objects.get(id=id)
+    return render(request, 'card_overview.html',{'card': card})
+
+def  transaction_overview(request,id):
+    transaction = models.Transaction.objects.get(id=id)
+    return render(request, 'transaction_overview.html',{'transaction': transaction})
+
+def  receipt_overview(request,id):
+    receipt = models.Receipt.objects.get(id=id)
+    return render(request, 'receipt_overview.html',{'receipt': receipt})   
                       
 # End of Single Object View  
 
@@ -175,5 +195,61 @@ def edit_customer(request,id):
     else:
         form = forms.CustomerRegistrationForm(instance=customer)    
     return render(request, "edit_customer.html", {"form": form})
+
+
+def edit_wallet(request,id):
+    wallet = models.Wallet.objects.get(id=id)
+    if request.method == 'POST':
+        form = forms.WalletRegistrationForm(request.POST, instance=wallet)
+        if form.is_valid():
+            form.save()
+            return redirect('wallet_overview', id=wallet.id)
+    else:
+        form = forms.WalletRegistrationForm(instance=wallet)    
+    return render(request, "edit_wallet.html", {"form": form})
+
+def edit_account(request,id):
+    account = models.Account.objects.get(id=id)
+    if request.method == 'POST':
+        form = forms.AccountRegistrationForm(request.POST, instance=account)
+        if form.is_valid():
+            form.save()
+            return redirect('account_overview', id=account.id)
+    else:
+        form = forms.AccountRegistrationForm(instance=account)    
+    return render(request, "edit_account.html", {"form": form})
+
+def edit_card(request,id):
+    card = models.Card.objects.get(id=id)
+    if request.method == 'POST':
+        form = forms.CardRegistrationForm(request.POST, instance=card)
+        if form.is_valid():
+            form.save()
+            return redirect('card_overview', id=card.id)
+    else:
+        form = forms.CardRegistrationForm(instance=card)    
+    return render(request, "edit_card.html", {"form": form})
+
+def edit_transaction(request,id):
+    transaction = models.Transaction.objects.get(id=id)
+    if request.method == 'POST':
+        form = forms.TransactionRegistrationForm(request.POST, instance=transaction)
+        if form.is_valid():
+            form.save()
+            return redirect('transaction_overview', id=transaction.id)
+    else:
+        form = forms.TransactionRegistrationForm(instance=transaction)    
+    return render(request, "edit_transaction.html", {"form": form})
+
+def edit_receipt(request,id):
+    receipt = models.Receipt.objects.get(id=id)
+    if request.method == 'POST':
+        form = forms.ReceiptRegistrationForm(request.POST, instance=receipt)
+        if form.is_valid():
+            form.save()
+            return redirect('receipt_overview', id=receipt.id)
+    else:
+        form = forms.ReceiptRegistrationForm(instance=receipt)    
+    return render(request, "edit_receipt.html", {"form": form})
 
 # End of Edit Object View                  

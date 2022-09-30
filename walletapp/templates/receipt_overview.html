@@ -1,0 +1,5 @@
+<h1>{{receipt.receipt_number}}</h1>
+<h2>{{receipt.receipt_type}}</h2>
+<h3>{{receipt.ammount}}</h3>
+<h4>{{receipt.date}}</h4>
+<a href="{% url 'edit_receipt' id=receipt.id %}"> Edit </a>

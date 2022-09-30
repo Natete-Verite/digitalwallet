@@ -25,6 +25,22 @@ urlpatterns = [
     path('thirdparties/', views.list_thirdparties, name="thirdparties_list"),
     path('transactions/', views.list_transactions, name="transactions_list"),
     path('wallets/', views.list_wallets, name="wallets_list"),
+    
     path('customers/<int:id>/', views.customer_profile, name="customer_profile"),
-    path('customers/edit/<int:id>/',views.edit_customer, name="edit_customer")
+    path('customers/edit/<int:id>/',views.edit_customer, name="edit_customer"),
+    
+    path('wallets/<int:id>/', views.wallet_overview, name="wallet_overview"),
+    path('wallets/edit/<int:id>/',views.edit_wallet, name="edit_wallet"),
+    
+    path('accounts/<int:id>/', views.account_overview, name="account_overview"),
+    path('accounts/edit/<int:id>/',views.edit_account, name="edit_account"),
+    
+    path('cards/<int:id>/', views.card_overview, name="card_overview"),
+    path('cards/edit/<int:id>/',views.edit_card, name="edit_card"),
+    
+    path('transactions/<int:id>/', views.transaction_overview, name="transaction_overview"),
+    path('customers/edit/<int:id>/',views.edit_transaction, name="edit_transaction"),
+    
+    path('receipts/<int:id>/', views.receipt_overview, name="receipt_overview"),
+    path('receipts/edit/<int:id>/',views.edit_receipt, name="edit_receipt"),
 ]
