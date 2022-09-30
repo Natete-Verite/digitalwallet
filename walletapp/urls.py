@@ -25,4 +25,6 @@ urlpatterns = [
     path('thirdparties/', views.list_thirdparties, name="thirdparties_list"),
     path('transactions/', views.list_transactions, name="transactions_list"),
     path('wallets/', views.list_wallets, name="wallets_list"),
+    path('customers/<int:id>/', views.customer_profile, name="customer_profile"),
+    path('customers/edit/<int:id>/',views.edit_customer, name="edit_customer")
 ]

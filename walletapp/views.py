@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from walletapp.models import Wallet
 from . import forms
 from . import models
@@ -153,4 +153,27 @@ def list_notifications(request):
     notifications = models.Notification.objects.all()
     return render(request, 'notifications_list.html',{'notifications': notifications})   
  
-# End of Lists                        
+# End of Lists   
+
+# Start of Single Object View
+
+def customer_profile(request,id):
+    customer = models.Customer.objects.get(id=id)
+    return render(request, 'customer_profile.html',{'customer': customer})   
+                      
+# End of Single Object View  
+
+# Start of Edit Object View
+
+def edit_customer(request,id):
+    customer = models.Customer.objects.get(id=id)
+    if request.method == 'POST':
+        form = forms.CustomerRegistrationForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('customer_profile', id=customer.id)
+    else:
+        form = forms.CustomerRegistrationForm(instance=customer)    
+    return render(request, "register_customer.html", {"form": form})
+
+# End of Edit Object View                  
