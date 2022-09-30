@@ -174,6 +174,6 @@ def edit_customer(request,id):
             return redirect('customer_profile', id=customer.id)
     else:
         form = forms.CustomerRegistrationForm(instance=customer)    
-    return render(request, "register_customer.html", {"form": form})
+    return render(request, "edit_customer.html", {"form": form})
 
 # End of Edit Object View                  
